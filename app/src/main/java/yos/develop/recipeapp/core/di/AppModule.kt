@@ -10,6 +10,8 @@ import dagger.hilt.components.SingletonComponent
 import yos.develop.recipeapp.core.room.config.AppDatabase
 import yos.develop.recipeapp.core.room.tables.user.UserDao
 import yos.develop.recipeapp.core.utils.Constants
+import yos.develop.recipeapp.screen.login.data.LoginRepositoryImpl
+import yos.develop.recipeapp.screen.login.domain.LoginRepository
 import yos.develop.recipeapp.splash.data.SplashRepositoryImpl
 import yos.develop.recipeapp.splash.domain.SplashRepository
 import javax.inject.Singleton
@@ -34,4 +36,9 @@ class AppModule {
     @Singleton
     @Provides
     fun provideSplashRepository(impl: SplashRepositoryImpl): SplashRepository = impl
+
+    @Singleton
+    @Provides
+    fun provideLoginRepository(impl: LoginRepositoryImpl): LoginRepository = impl
+
 }
