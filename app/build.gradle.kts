@@ -65,15 +65,14 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
-
     //Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
-
     //Navigation
     implementation(libs.navigation.compose)
-
     //Splash
     implementation(libs.core.splashscreen)
+    //serialization
+    implementation(libs.kotlinx.serialization.json)
 }
