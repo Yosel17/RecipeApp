@@ -75,4 +75,6 @@ dependencies {
     implementation(libs.core.splashscreen)
     //serialization
     implementation(libs.kotlinx.serialization.json)
+    //lottie
+    implementation(libs.lottie.compose)
 }

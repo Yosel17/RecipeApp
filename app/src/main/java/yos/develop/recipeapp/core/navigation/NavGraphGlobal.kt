@@ -7,9 +7,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import yos.develop.recipeapp.screen.login.ui.LoginScreen
+import yos.develop.recipeapp.screen.login.ui.LoginViewModel
 
 @Composable
 fun NavGraphGlobal(
@@ -29,7 +32,15 @@ fun NavGraphGlobal(
         }
 
         composable<Screens.LoginScreen> {
-            Text("Login")
+            val viewModel = hiltViewModel<LoginViewModel>()
+            val state = viewModel.state
+
+            LoginScreen(
+                state = state,
+                onEvent = { event ->
+                    viewModel.onLoginEvent(event = event)
+                }
+            )
         }
 
         composable<Screens.HomeScreen> {
