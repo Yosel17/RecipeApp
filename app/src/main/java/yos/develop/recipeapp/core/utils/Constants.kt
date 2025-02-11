@@ -8,6 +8,7 @@ object Constants {
     //text button
     const val LOADING_TEXT_BUTTON = "Cargando..."
     const val I_UNDERSTAND_TEXT_BUTTON = "Entiendo"
+    const val GET_INTO_TEXT_BUTTON = "Ingresar"
 
     //DescriptionContent
     const val LOGO_APP_IC = "Icono de aplicación"

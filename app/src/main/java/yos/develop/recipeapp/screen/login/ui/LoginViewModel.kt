@@ -33,13 +33,17 @@ class LoginViewModel @Inject constructor(
             Catalog.EMAIL_TEXT_FIELD ->{
                 state = state.copy(email = newValue)
                 state = state.copy(isValidEmail = state.email == Constants.EMAIL_KOALIT)
-                state = state.copy(enableButton = state.email == Constants.EMAIL_KOALIT && state.password == Constants.PASSWORD_KOALIT)
+                state = state.copy(enableButton = validateFieldsLogin())
             }
             Catalog.PASSWORD_TEXT_FIELD ->{
                 state = state.copy(password = newValue)
                 state = state.copy(isValidPassword = state.password == Constants.PASSWORD_KOALIT)
-                state = state.copy(enableButton = state.email == Constants.EMAIL_KOALIT && state.password == Constants.PASSWORD_KOALIT)
+                state = state.copy(enableButton = validateFieldsLogin())
             }
         }
+    }
+
+    private fun validateFieldsLogin(): Boolean{
+        return state.email == Constants.EMAIL_KOALIT && state.password == Constants.PASSWORD_KOALIT
     }
 }

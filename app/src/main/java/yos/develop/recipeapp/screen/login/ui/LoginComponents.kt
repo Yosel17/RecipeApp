@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import yos.develop.recipeapp.R
+import yos.develop.recipeapp.core.components.ButtonGlobal
 import yos.develop.recipeapp.core.utils.Catalog
 import yos.develop.recipeapp.core.utils.Constants
 
@@ -48,7 +49,7 @@ fun BodyLogin(
 
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_recipe),
@@ -60,11 +61,11 @@ fun BodyLogin(
 
         Text(
             text = Constants.RECIPE_APP,
-            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.W500),
+            style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.W500),
             color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         OutlinedTextField(
             value = state.email,
@@ -94,7 +95,7 @@ fun BodyLogin(
                 }
             },
             isError = !state.isValidEmail,
-            enabled = state.enableButton,
+            enabled = state.enableTextFields,
             visualTransformation = VisualTransformation.None
         )
 
@@ -119,7 +120,7 @@ fun BodyLogin(
                 }
             ),
             trailingIcon = {
-                val iconTrailing = if (state.passwordVisibility) {
+                val iconTrailing = if (passwordVisibility.value) {
                     Icons.Filled.Visibility
                 } else {
                     Icons.Filled.VisibilityOff
@@ -133,7 +134,7 @@ fun BodyLogin(
                     )
                 }
             },
-            visualTransformation = if (state.passwordVisibility) {
+            visualTransformation = if (passwordVisibility.value) {
                 VisualTransformation.None
             } else {
                 PasswordVisualTransformation()
@@ -149,7 +150,16 @@ fun BodyLogin(
                 }
             },
             isError = !state.isValidPassword,
-            enabled = state.enableButton
+            enabled = state.enableTextFields
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        ButtonGlobal(
+            textButton = Constants.GET_INTO_TEXT_BUTTON,
+            enable = state.enableButton,
+            isLoading = state.isLoadingLogin,
+            onClick = {}
         )
 
     }
