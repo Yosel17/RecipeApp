@@ -4,9 +4,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import yos.develop.recipeapp.core.utils.Catalog
 import yos.develop.recipeapp.core.utils.Constants
+import yos.develop.recipeapp.core.utils.Resource
 import yos.develop.recipeapp.screen.login.domain.LoginRepository
 import javax.inject.Inject
 
@@ -24,6 +30,12 @@ class LoginViewModel @Inject constructor(
             }
             is LoginEvent.ChangeTextFields -> {
                 changeTextFields(type = event.type, newValue = event.newValue)
+            }
+            LoginEvent.Login -> {
+                login()
+            }
+            LoginEvent.ChangeSuccess -> {
+                state = state.copy(successLogin = !state.successLogin)
             }
         }
     }
@@ -45,5 +57,37 @@ class LoginViewModel @Inject constructor(
 
     private fun validateFieldsLogin(): Boolean{
         return state.email == Constants.EMAIL_KOALIT && state.password == Constants.PASSWORD_KOALIT
+    }
+
+    private fun login() {
+        state = state.copy(isLoadingLogin = true)
+        state = state.copy(enableButton = false)
+        state = state.copy(enableTextFields = false)
+
+        viewModelScope.launch(Dispatchers.IO) {
+            delay(1000)
+            val response = loginRepository.login(
+                email = state.email,
+                password = state.password
+            )
+
+            withContext(Dispatchers.Main){
+                when(response){
+                    is Resource.Failure -> {
+                        state = state.copy(errorMessage = response.exception.localizedMessage ?: "---")
+                        state = state.copy(isError = true)
+                        state = state.copy(isLoadingLogin = false)
+                        state = state.copy(enableButton = true)
+                        state = state.copy(enableTextFields = true)
+                    }
+                    is Resource.Success -> {
+                        state = state.copy(isLoadingLogin = false)
+                        state = state.copy(enableButton = true)
+                        state = state.copy(enableTextFields = true)
+                        state = state.copy(successLogin = true)
+                    }
+                }
+            }
+        }
     }
 }

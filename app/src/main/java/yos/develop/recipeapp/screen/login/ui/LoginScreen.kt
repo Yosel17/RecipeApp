@@ -12,15 +12,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import yos.develop.recipeapp.core.components.DialogError
+import yos.develop.recipeapp.core.navigation.Screens
 
 @Composable
 fun LoginScreen(
     state: LoginState,
-    onEvent:(LoginEvent) -> Unit
+    onEvent:(LoginEvent) -> Unit,
+    onNavigation:(Screens) -> Unit
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -53,6 +56,13 @@ fun LoginScreen(
             onEvent(LoginEvent.ToggleShowDialogError)
         }
     )
+
+    LaunchedEffect(key1 = state.successLogin) {
+        if (state.successLogin){
+            onNavigation(Screens.HomeScreen)
+            onEvent(LoginEvent.ChangeSuccess)
+        }
+    }
 
 
 }

@@ -39,6 +39,13 @@ fun NavGraphGlobal(
                 state = state,
                 onEvent = { event ->
                     viewModel.onLoginEvent(event = event)
+                },
+                onNavigation = { screen ->
+                    navHostController.navigate(screen){
+                        popUpTo(0){
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }

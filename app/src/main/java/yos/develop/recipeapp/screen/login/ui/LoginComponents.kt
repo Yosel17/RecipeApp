@@ -159,7 +159,9 @@ fun BodyLogin(
             textButton = Constants.GET_INTO_TEXT_BUTTON,
             enable = state.enableButton,
             isLoading = state.isLoadingLogin,
-            onClick = {}
+            onClick = {
+                onEvent(LoginEvent.Login)
+            }
         )
 
     }
