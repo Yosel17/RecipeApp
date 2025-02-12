@@ -30,6 +30,12 @@ class HomeViewModel @Inject constructor(
             HomeEvent.ToggleShowDialogError ->{
                 state = state.copy(isError = !state.isError)
             }
+            HomeEvent.Logout -> {
+                logout()
+            }
+            HomeEvent.ToggleSuccess -> {
+                state = state.copy(successLogout = !state.successLogout)
+            }
         }
     }
 
@@ -59,5 +65,27 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun logout() {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val response = homeRepository.logout()
+
+            withContext(Dispatchers.Main){
+                when(response){
+                    is Resource.Failure -> {
+                        val errorMessage = response.exception.localizedMessage ?: "---"
+                        state = state.copy(errorMessage = errorMessage)
+                        state = state.copy(isError = true)
+                    }
+                    is Resource.Success -> {
+                        state = state.copy(successLogout = true)
+                    }
+                }
+            }
+        }
+
     }
 }

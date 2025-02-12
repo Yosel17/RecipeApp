@@ -11,6 +11,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import yos.develop.recipeapp.screen.home.ui.HomeScreen
+import yos.develop.recipeapp.screen.home.ui.HomeViewModel
 import yos.develop.recipeapp.screen.login.ui.LoginScreen
 import yos.develop.recipeapp.screen.login.ui.LoginViewModel
 
@@ -51,7 +53,19 @@ fun NavGraphGlobal(
         }
 
         composable<Screens.HomeScreen> {
-            Text("Home")
+            val viewModel = hiltViewModel<HomeViewModel>()
+            val state = viewModel.state
+
+            HomeScreen(
+                state = state,
+                onEvent = { event ->
+                    viewModel.onHomeEvent(event = event)
+                },
+                onGoLogin = {
+                    navHostController.popBackStack()
+                    navHostController.navigate(Screens.LoginScreen)
+                }
+            )
         }
     }
 }
