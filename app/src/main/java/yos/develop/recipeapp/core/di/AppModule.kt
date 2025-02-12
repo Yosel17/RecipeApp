@@ -11,6 +11,8 @@ import yos.develop.recipeapp.core.room.config.AppDatabase
 import yos.develop.recipeapp.core.room.tables.recipe.RecipeDao
 import yos.develop.recipeapp.core.room.tables.user.UserDao
 import yos.develop.recipeapp.core.utils.Constants
+import yos.develop.recipeapp.screen.home.data.HomeRepositoryImpl
+import yos.develop.recipeapp.screen.home.domain.HomeRepository
 import yos.develop.recipeapp.screen.login.data.LoginRepositoryImpl
 import yos.develop.recipeapp.screen.login.domain.LoginRepository
 import yos.develop.recipeapp.splash.data.SplashRepositoryImpl
@@ -40,6 +42,7 @@ class AppModule {
         return appDatabase.recipeDao()
     }
 
+    //Repository
     @Singleton
     @Provides
     fun provideSplashRepository(impl: SplashRepositoryImpl): SplashRepository = impl
@@ -47,5 +50,9 @@ class AppModule {
     @Singleton
     @Provides
     fun provideLoginRepository(impl: LoginRepositoryImpl): LoginRepository = impl
+
+    @Singleton
+    @Provides
+    fun provideHomeRepository(impl: HomeRepositoryImpl): HomeRepository = impl
 
 }
