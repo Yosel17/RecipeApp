@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import yos.develop.recipeapp.core.room.config.AppDatabase
+import yos.develop.recipeapp.core.room.tables.recipe.RecipeDao
 import yos.develop.recipeapp.core.room.tables.user.UserDao
 import yos.develop.recipeapp.core.utils.Constants
 import yos.develop.recipeapp.screen.login.data.LoginRepositoryImpl
@@ -31,6 +32,12 @@ class AppModule {
     @Provides
     fun provideUserDao(appDatabase: AppDatabase): UserDao{
         return appDatabase.userDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRecipeDao(appDatabase: AppDatabase): RecipeDao{
+        return appDatabase.recipeDao()
     }
 
     @Singleton
