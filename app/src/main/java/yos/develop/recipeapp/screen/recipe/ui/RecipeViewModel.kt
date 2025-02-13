@@ -36,6 +36,9 @@ class RecipeViewModel @Inject constructor(
             is RecipeEvent.ChangeInputs -> {
                 changeInputs(type = event.type, newValue = event.newValue)
             }
+            RecipeEvent.ChangeFavorite -> {
+                state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
+            }
         }
     }
 

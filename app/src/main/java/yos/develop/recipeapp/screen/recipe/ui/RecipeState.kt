@@ -11,5 +11,7 @@ data class RecipeState(
     val imageUri: Uri? = null,
     val title: String = "",
     val description: String = "",
-    val preparationTime: String = ""
+    val preparationTime: String = "",
+    val enableButton: Boolean = true,
+    val isLoadingSaveRecipe: Boolean = false
 )

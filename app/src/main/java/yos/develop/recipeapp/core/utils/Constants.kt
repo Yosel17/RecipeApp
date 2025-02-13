@@ -10,6 +10,7 @@ object Constants {
     const val I_UNDERSTAND_TEXT_BUTTON = "Entiendo"
     const val GET_INTO_TEXT_BUTTON = "Ingresar"
     const val SELECT_IMAGE_TEXT_BUTTON = "Seleccionar imagen"
+    const val SAVE_RECIPE_TEXT_BUTTON = "Guardar receta"
 
     //DescriptionContent
     const val LOGO_APP_IC = "Icono de aplicación"
@@ -18,9 +19,12 @@ object Constants {
     const val LOGOUT_IC = "Icono para cerrar sesión"
     const val ADD_RECIPE_IC = "Icono para agregar receta"
     const val SELECTED_IMAGE_IC = "Icono para seleccionar imagen"
+    const val FAVORITE_IC = "Icono favorito"
 
     //text
     const val RECIPE_APP = "Recetas App"
+    const val ADD_FAVORITE = "Agregar a favoritos"
+    const val FAVORITE = "Favorita"
 
     //textField
     const val EMAIL_KOALIT = "info@koalit.dev"

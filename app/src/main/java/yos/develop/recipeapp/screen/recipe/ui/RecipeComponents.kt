@@ -13,13 +13,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -38,6 +45,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import yos.develop.recipeapp.core.components.ButtonGlobal
 import yos.develop.recipeapp.core.utils.Catalog
 import yos.develop.recipeapp.core.utils.Constants
 
@@ -199,6 +207,43 @@ fun BodyRecipe(
 
             }
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = if(state.recipe.favorite) Constants.FAVORITE else Constants.ADD_FAVORITE,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            IconButton(
+                onClick = {
+                    onEvent(RecipeEvent.ChangeFavorite)
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(40.dp),
+                    imageVector = if(state.recipe.favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                    contentDescription = Constants.FAVORITE_IC
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        ButtonGlobal(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textButton = Constants.SAVE_RECIPE_TEXT_BUTTON,
+            enable = state.enableButton,
+            isLoading = state.isLoadingSaveRecipe,
+            onClick = {}
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
 
     }
 }
