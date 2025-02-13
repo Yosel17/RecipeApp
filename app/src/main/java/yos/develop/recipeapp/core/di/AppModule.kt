@@ -15,6 +15,8 @@ import yos.develop.recipeapp.screen.home.data.HomeRepositoryImpl
 import yos.develop.recipeapp.screen.home.domain.HomeRepository
 import yos.develop.recipeapp.screen.login.data.LoginRepositoryImpl
 import yos.develop.recipeapp.screen.login.domain.LoginRepository
+import yos.develop.recipeapp.screen.recipe.data.RecipeRepositoryImpl
+import yos.develop.recipeapp.screen.recipe.domain.RecipeRepository
 import yos.develop.recipeapp.splash.data.SplashRepositoryImpl
 import yos.develop.recipeapp.splash.domain.SplashRepository
 import javax.inject.Singleton
@@ -54,5 +56,9 @@ class AppModule {
     @Singleton
     @Provides
     fun provideHomeRepository(impl: HomeRepositoryImpl): HomeRepository = impl
+
+    @Singleton
+    @Provides
+    fun provideRecipeRepository(impl: RecipeRepositoryImpl): RecipeRepository = impl
 
 }

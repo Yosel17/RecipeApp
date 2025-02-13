@@ -23,3 +23,14 @@ fun RecipeEntity.toModel(): RecipeModel{
         routeImage
     )
 }
+
+fun RecipeModel.toEntity(): RecipeEntity{
+    return RecipeEntity(
+        idRecipe = idRecipe,
+        title = title,
+        description = description,
+        preparationTime = preparationTime,
+        favorite = favorite,
+        routeImage = routeImage
+    )
+}

@@ -13,7 +13,7 @@ interface RecipeDao {
     fun getRecipes(): Flow<List<RecipeEntity>>
 
     @Query("select * from recipeentity where idRecipe = :idRecipe")
-    suspend fun getRecipeForId(idRecipe: Int): RecipeEntity?
+    suspend fun getRecipeForId(idRecipe: Int): RecipeEntity
 
     @Upsert
     suspend fun insertRecipe(recipeEntity: RecipeEntity)
