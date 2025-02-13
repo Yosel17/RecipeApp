@@ -33,10 +33,13 @@ class RecipeViewModel @Inject constructor(
             is RecipeEvent.AddUriImage -> {
                 state = state.copy(imageUri = event.uri)
             }
+            is RecipeEvent.ChangeInputs -> {
+                changeInputs(type = event.type, newValue = event.newValue)
+            }
         }
     }
 
-    fun getRecipe(idRecipe: Int){
+    private fun getRecipe(idRecipe: Int){
         if (idRecipe == Catalog.ID_FOR_ADD_RECIPE){
             state = state.copy(isLoadingDataInitial = false)
         }else{
@@ -57,6 +60,20 @@ class RecipeViewModel @Inject constructor(
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun changeInputs(type: Int, newValue: String) {
+        when(type){
+            Catalog.TITLE_TEXT_FIELD ->{
+                state = state.copy(title = newValue)
+            }
+            Catalog.DESCRIPTION_TEXT_FIELD ->{
+                state = state.copy(description = newValue)
+            }
+            Catalog.PREPARATION_TIME_TEXT_FIELD ->{
+                state = state.copy(preparationTime = newValue)
             }
         }
     }

@@ -27,6 +27,9 @@ object Constants {
     const val PASSWORD_KOALIT = "koalit123"
     const val EMAIL_LABEL = "Correo electrónico"
     const val PASSWORD_LABEL = "Contraseña"
+    const val TITLE_LABEL = "Título"
+    const val DESCRIPTION_LABEL = "Descripción"
+    const val PREPARATION_TIME_LABEL = "Tiempo de preparación"
 
     //Error message
     const val THIS_EMAIL_DOES_NOT_CORRESPOND_TO_KOALIT_USER = "Este correo no corresponde al usuario de KOALIT"

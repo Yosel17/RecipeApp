@@ -8,5 +8,8 @@ data class RecipeState(
     val isError: Boolean = false,
     val isLoadingDataInitial: Boolean = true,
     val recipe: RecipeModel = RecipeModel(),
-    val imageUri: Uri? = null
+    val imageUri: Uri? = null,
+    val title: String = "",
+    val description: String = "",
+    val preparationTime: String = ""
 )
