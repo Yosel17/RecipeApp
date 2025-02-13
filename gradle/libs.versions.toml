@@ -17,6 +17,7 @@ navigation = "2.8.6"
 splashscreen = "1.0.1"
 serialization = "1.7.3"
 lottie = "4.2.0"
+coil = "2.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 
 

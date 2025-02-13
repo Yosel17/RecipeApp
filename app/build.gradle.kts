@@ -78,4 +78,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     //lottie
     implementation(libs.lottie.compose)
+    //coit
+    implementation(libs.coil.compose)
 }

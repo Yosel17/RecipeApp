@@ -9,6 +9,7 @@ object Constants {
     const val LOADING_TEXT_BUTTON = "Cargando..."
     const val I_UNDERSTAND_TEXT_BUTTON = "Entiendo"
     const val GET_INTO_TEXT_BUTTON = "Ingresar"
+    const val SELECT_IMAGE_TEXT_BUTTON = "Seleccionar imagen"
 
     //DescriptionContent
     const val LOGO_APP_IC = "Icono de aplicación"
@@ -16,6 +17,7 @@ object Constants {
     const val FILTER_IC = "Icono de filtros"
     const val LOGOUT_IC = "Icono para cerrar sesión"
     const val ADD_RECIPE_IC = "Icono para agregar receta"
+    const val SELECTED_IMAGE_IC = "Icono para seleccionar imagen"
 
     //text
     const val RECIPE_APP = "Recetas App"

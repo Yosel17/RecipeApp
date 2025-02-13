@@ -30,6 +30,9 @@ class RecipeViewModel @Inject constructor(
             is RecipeEvent.GetRecipe -> {
                 getRecipe(idRecipe = event.idRecipe)
             }
+            is RecipeEvent.AddUriImage -> {
+                state = state.copy(imageUri = event.uri)
+            }
         }
     }
 
