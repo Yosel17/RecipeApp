@@ -39,4 +39,8 @@ object Constants {
 
     //FloatingButton
     const val NEW_RECIPE_FLOATING = "Nueva receta"
+
+    //title
+    const val ADD_RECIPE = "Agregar receta"
+    const val DETAIL_RECIPE = "Detalle receta"
 }

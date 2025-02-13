@@ -11,10 +11,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import yos.develop.recipeapp.core.utils.Catalog
 import yos.develop.recipeapp.screen.home.ui.HomeScreen
 import yos.develop.recipeapp.screen.home.ui.HomeViewModel
 import yos.develop.recipeapp.screen.login.ui.LoginScreen
 import yos.develop.recipeapp.screen.login.ui.LoginViewModel
+import yos.develop.recipeapp.screen.recipe.ui.RecipeScreen
+import yos.develop.recipeapp.screen.recipe.ui.RecipeViewModel
 
 @Composable
 fun NavGraphGlobal(
@@ -64,6 +68,26 @@ fun NavGraphGlobal(
                 onGoLogin = {
                     navHostController.popBackStack()
                     navHostController.navigate(Screens.LoginScreen)
+                },
+                onNavigation = { screen ->
+                    navHostController.navigate(screen)
+                }
+            )
+        }
+
+        composable<Screens.RecipeScreen> {
+            val recipeScreen: Screens.RecipeScreen = it.toRoute()
+            val viewModel = hiltViewModel<RecipeViewModel>()
+            val state = viewModel.state
+
+            RecipeScreen(
+                state =  state,
+                idRecipe = recipeScreen.idRecipe,
+                onEvent = { event ->
+                    viewModel.onRecipeEvent(event = event)
+                },
+                onBack = {
+                    navHostController.navigateUp()
                 }
             )
         }

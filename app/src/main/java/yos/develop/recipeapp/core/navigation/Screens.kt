@@ -12,4 +12,7 @@ sealed interface Screens {
 
     @Serializable
     data object HomeScreen: Screens
+
+    @Serializable
+    data class RecipeScreen(val idRecipe: Int): Screens
 }

@@ -25,13 +25,16 @@ import yos.develop.recipeapp.core.components.DialogError
 import yos.develop.recipeapp.core.components.EmptyList
 import yos.develop.recipeapp.core.components.LoadingScreen
 import yos.develop.recipeapp.core.components.TopBarGlobal
+import yos.develop.recipeapp.core.navigation.Screens
+import yos.develop.recipeapp.core.utils.Catalog
 import yos.develop.recipeapp.core.utils.Constants
 
 @Composable
 fun HomeScreen(
     state: HomeState,
     onEvent:(HomeEvent) -> Unit,
-    onGoLogin:() -> Unit
+    onGoLogin:() -> Unit,
+    onNavigation:(Screens) -> Unit
 ) {
 
     Scaffold(
@@ -52,7 +55,9 @@ fun HomeScreen(
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = {  }
+                onClick = {
+                    onNavigation(Screens.RecipeScreen(idRecipe = Catalog.ID_FOR_ADD_RECIPE))
+                }
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically
