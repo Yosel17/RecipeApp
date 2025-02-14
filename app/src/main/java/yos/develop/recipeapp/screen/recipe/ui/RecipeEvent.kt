@@ -13,4 +13,8 @@ sealed class RecipeEvent {
     data class ChangeInputs(val type: Int, val newValue: String): RecipeEvent()
 
     data object ChangeFavorite: RecipeEvent()
+
+    data object SaveRecipe: RecipeEvent()
+
+    data object ToggleSuccess: RecipeEvent()
 }

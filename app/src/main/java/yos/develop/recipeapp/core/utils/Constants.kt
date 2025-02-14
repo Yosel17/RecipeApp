@@ -45,6 +45,8 @@ object Constants {
     //Empty
     const val NO_DATA_TO_SHOW = "Sin datos por mostrar"
     const val YOU_HAVE_NOT_ADDED_A_RECIPE_YET = "Aún no has agregado una receta"
+    const val YOU_MUST_COMPLETE_THE_FOLLOWING_FIELDS = "Debes de completar los siguientes campos:"
+    const val TO_SAVE_THE_RECIPE = "para poder guardar la receta"
 
     //FloatingButton
     const val NEW_RECIPE_FLOATING = "Nueva receta"
@@ -52,4 +54,10 @@ object Constants {
     //title
     const val ADD_RECIPE = "Agregar receta"
     const val DETAIL_RECIPE = "Detalle receta"
+
+    //Route
+    const val RECIPE_APP_FOLDER = "RecipeApp"
+
+    //toast
+    const val IT_WAS_SAVED_CORRECTLY = "Se guardó correctamente"
 }

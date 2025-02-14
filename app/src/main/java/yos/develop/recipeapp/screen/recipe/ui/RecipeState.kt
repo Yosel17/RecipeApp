@@ -13,5 +13,7 @@ data class RecipeState(
     val description: String = "",
     val preparationTime: String = "",
     val enableButton: Boolean = true,
-    val isLoadingSaveRecipe: Boolean = false
+    val isLoadingSaveRecipe: Boolean = false,
+    val routeImage: String = "",
+    val successSaveRecipe: Boolean = false
 )

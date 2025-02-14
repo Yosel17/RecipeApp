@@ -150,7 +150,7 @@ fun BodyRecipe(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
-                value = state.title,
+                value = state.description,
                 onValueChange = { newValue ->
                     onEvent(RecipeEvent.ChangeInputs(type = Catalog.DESCRIPTION_TEXT_FIELD, newValue = newValue))
                 },
@@ -240,7 +240,9 @@ fun BodyRecipe(
             textButton = Constants.SAVE_RECIPE_TEXT_BUTTON,
             enable = state.enableButton,
             isLoading = state.isLoadingSaveRecipe,
-            onClick = {}
+            onClick = {
+                onEvent(RecipeEvent.SaveRecipe)
+            }
         )
 
         Spacer(modifier = Modifier.height(32.dp))

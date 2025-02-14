@@ -1,5 +1,6 @@
 package yos.develop.recipeapp.screen.recipe.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import yos.develop.recipeapp.core.components.DialogError
 import yos.develop.recipeapp.core.components.LoadingScreen
@@ -73,4 +76,13 @@ fun RecipeScreen(
             onEvent(RecipeEvent.ToggleShowDialogError)
         }
     )
+    val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+    LaunchedEffect(key1 = state.successSaveRecipe) { 
+        if (state.successSaveRecipe){
+            focusManager.clearFocus()
+            Toast.makeText(context, Constants.IT_WAS_SAVED_CORRECTLY, Toast.LENGTH_SHORT).show()
+            onEvent(RecipeEvent.ToggleSuccess)
+        }
+    }
 }
