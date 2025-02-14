@@ -239,7 +239,8 @@ fun BodyRecipe(
                 Icon(
                     modifier = Modifier.size(40.dp),
                     imageVector = if(state.recipe.favorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = Constants.FAVORITE_IC
+                    contentDescription = Constants.FAVORITE_IC,
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }

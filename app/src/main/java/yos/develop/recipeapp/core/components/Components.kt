@@ -282,7 +282,8 @@ fun ItemRecipe(
             Icon(
                 modifier = Modifier.padding(16.dp).align(Alignment.End),
                 imageVector = if(recipe.favorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                contentDescription = Constants.FAVORITE_IC
+                contentDescription = Constants.FAVORITE_IC,
+                tint = MaterialTheme.colorScheme.primary
             )
         }
     }
