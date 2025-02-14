@@ -53,7 +53,7 @@ class RecipeViewModel @Inject constructor(
                 changeInputs(type = event.type, newValue = event.newValue)
             }
             RecipeEvent.ChangeFavorite -> {
-                state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
+                changeFavorite()
             }
             RecipeEvent.SaveRecipe -> {
                 saveRecipe()
@@ -64,6 +64,29 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
+    private fun changeFavorite() {
+        if (state.recipe.idRecipe == Catalog.ID_FOR_ADD_RECIPE){
+            state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
+        }else{
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = recipeRepository.saveFavoriteRecipe(
+                    recipe = state.recipe.copy(favorite = !state.recipe.favorite)
+                )
+
+                withContext(Dispatchers.Main){
+                    when(response){
+                        is Resource.Failure -> {
+                            state = state.copy(errorMessage = response.exception.localizedMessage?:"---")
+                            state = state.copy(isError = true)
+                        }
+                        is Resource.Success -> {
+                            state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
     private fun getRecipe(idRecipe: Int){
