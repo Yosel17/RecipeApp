@@ -20,11 +20,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.HideImage
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.filled.Timer
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -67,7 +64,6 @@ fun BodyRecipe(
             }
         )
         val focusManager = LocalFocusManager.current
-        val keyboardController = LocalSoftwareKeyboardController.current
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -89,23 +85,34 @@ fun BodyRecipe(
                         contentScale = ContentScale.Crop
                     )
                 }
-            }
-            TextButton(
-                onClick = {
-                    pickMediaLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                }
-            ) {
-                Row {
+
+                this@Row.AnimatedVisibility(visible = state.imageUri == null) {
                     Icon(
-                        imageVector = Icons.Filled.PhotoLibrary,
-                        contentDescription = Constants.SELECTED_IMAGE_IC
-                    )
-                    Text(
-                        text = Constants.SELECT_IMAGE_TEXT_BUTTON,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        imageVector = Icons.Filled.HideImage,
+                        contentDescription = Constants.NOT_IMAGE_IC
                     )
                 }
+            }
+            if(state.recipe.idRecipe == Catalog.ID_FOR_ADD_RECIPE){
+                TextButton(
+                    onClick = {
+                        pickMediaLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                    }
+                ) {
+                    Row {
+                        Icon(
+                            imageVector = Icons.Filled.PhotoLibrary,
+                            contentDescription = Constants.SELECTED_IMAGE_IC
+                        )
+                        Text(
+                            text = Constants.SELECT_IMAGE_TEXT_BUTTON,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+            }else{
+                Box(modifier = Modifier.fillMaxSize().weight(1f))
             }
         }
 
@@ -138,7 +145,9 @@ fun BodyRecipe(
             )
         }else{
             Text(
-                text = state.recipe.title
+                text = state.recipe.title,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
 
@@ -173,7 +182,9 @@ fun BodyRecipe(
             )
         } else{
             Text(
-                text = state.recipe.description
+                text = state.recipe.description,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
 
@@ -235,17 +246,17 @@ fun BodyRecipe(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        ButtonGlobal(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textButton = Constants.SAVE_RECIPE_TEXT_BUTTON,
-            enable = state.enableButton,
-            isLoading = state.isLoadingSaveRecipe,
-            onClick = {
-                onEvent(RecipeEvent.SaveRecipe)
-            }
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
+        if (state.recipe.idRecipe == Catalog.ID_FOR_ADD_RECIPE){
+            ButtonGlobal(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textButton = Constants.SAVE_RECIPE_TEXT_BUTTON,
+                enable = state.enableButton,
+                isLoading = state.isLoadingSaveRecipe,
+                onClick = {
+                    onEvent(RecipeEvent.SaveRecipe)
+                }
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+        }
     }
 }

@@ -45,19 +45,23 @@ fun RecipeScreen(
         }
     ) { paddingValues ->
 
-        Column(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface)
-                .verticalScroll(rememberScrollState())
-                .imePadding()
-        ) {
-            if(state.isLoadingDataInitial){
+        if(state.isLoadingDataInitial){
+            Column(
+                modifier = Modifier.padding(paddingValues).fillMaxSize()
+            ) {
                 LoadingScreen(
                     modifier = Modifier.fillMaxSize()
                 )
-            }else{
+            }
+        }else{
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surface)
+                    .verticalScroll(rememberScrollState())
+                    .imePadding()
+            ) {
                 BodyRecipe(
                     modifier = Modifier
                         .fillMaxSize()

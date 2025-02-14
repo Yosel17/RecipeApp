@@ -83,6 +83,10 @@ class RecipeViewModel @Inject constructor(
                         }
                         is Resource.Success -> {
                             state = state.copy(recipe = response.result)
+                            if (!response.result.routeImage.isNullOrBlank()){
+                                state = state.copy(imageUri = Uri.parse(response.result.routeImage))
+                            }
+                            state = state.copy(preparationTime = response.result.preparationTime.toString())
                             state = state.copy(isLoadingDataInitial = false)
                         }
                     }
