@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material.icons.filled.HideImage
@@ -282,6 +283,35 @@ fun ItemRecipe(
                 modifier = Modifier.padding(16.dp).align(Alignment.End),
                 imageVector = if(recipe.favorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                 contentDescription = Constants.FAVORITE_IC
+            )
+        }
+    }
+}
+
+@Composable
+fun TitleAndExit(
+    modifier: Modifier = Modifier,
+    title: String,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = title,
+            color = textColor,
+            style = MaterialTheme.typography.headlineSmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+        IconButton(onClick = onClick) {
+            Icon(
+                imageVector = Icons.Filled.Cancel,
+                contentDescription =Constants.CANCEL_IC,
+                tint = MaterialTheme.colorScheme.error
             )
         }
     }

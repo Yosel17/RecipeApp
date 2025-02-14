@@ -11,6 +11,7 @@ object Constants {
     const val GET_INTO_TEXT_BUTTON = "Ingresar"
     const val SELECT_IMAGE_TEXT_BUTTON = "Seleccionar imagen"
     const val SAVE_RECIPE_TEXT_BUTTON = "Guardar receta"
+    const val APPLY_TEXT_BUTTON = "Aplicar"
 
     //DescriptionContent
     const val LOGO_APP_IC = "Icono de aplicación"
@@ -21,6 +22,7 @@ object Constants {
     const val SELECTED_IMAGE_IC = "Icono para seleccionar imagen"
     const val FAVORITE_IC = "Icono favorito"
     const val NOT_IMAGE_IC = "Icono sin imagen"
+    const val CANCEL_IC = "Icono de cancelar"
 
     //text
     const val RECIPE_APP = "Recetas App"
@@ -56,10 +58,16 @@ object Constants {
     const val ADD_RECIPE = "Agregar receta"
     const val DETAIL_RECIPE = "Detalle receta"
     const val TIME = "Tiempo:"
+    const val FILTERS = "Filtros"
 
     //Route
     const val RECIPE_APP_FOLDER = "RecipeApp"
 
     //toast
     const val IT_WAS_SAVED_CORRECTLY = "Se guardó correctamente"
+
+    //filter
+    const val ALL_FILTER = "Todas"
+    const val PREPARATION_TIME_FILTER = "Tiempo de preparación"
+    const val FAVORITE_FILTER = "Solo favoritos"
 }

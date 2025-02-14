@@ -11,4 +11,9 @@ object Catalog {
 
     //recipe
     const val ID_FOR_ADD_RECIPE = 0
+
+    //filter
+    const val ALL_FILTER = 0
+    const val PREPARATION_TIME_FILTER = 1
+    const val FAVORITE_FILTER = 2
 }

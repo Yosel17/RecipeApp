@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import yos.develop.recipeapp.core.components.DialogError
+import yos.develop.recipeapp.core.components.DialogFilter
 import yos.develop.recipeapp.core.components.EmptyList
 import yos.develop.recipeapp.core.components.ItemRecipe
 import yos.develop.recipeapp.core.components.LoadingScreen
@@ -49,7 +51,9 @@ fun HomeScreen(
                 showAction = true,
                 showFilter = true,
                 showBadged = state.isFilterApplied,
-                onClickFilter = {},
+                onClickFilter = {
+                    onEvent(HomeEvent.ToggleShowDialogFilter)
+                },
                 showLogout = true,
                 onClickLogout = {
                     onEvent(HomeEvent.Logout)
@@ -88,7 +92,7 @@ fun HomeScreen(
                     modifier = Modifier.fillMaxSize()
                 )
             }else{
-                if (state.recipes.isEmpty()){
+                if (state.recipesFilter.isEmpty()){
                     EmptyList(
                         modifier = Modifier.fillMaxSize(),
                         text = Constants.YOU_HAVE_NOT_ADDED_A_RECIPE_YET
@@ -99,7 +103,7 @@ fun HomeScreen(
                         contentPadding = PaddingValues(16.dp),
                         content = {
                             items(
-                                items = state.recipes,
+                                items = state.recipesFilter,
                                 key = {
                                     it.idRecipe
                                 }
@@ -124,6 +128,20 @@ fun HomeScreen(
         errorMessage = state.errorMessage,
         onDismiss = {
             onEvent(HomeEvent.ToggleShowDialogError)
+        }
+    )
+
+    DialogFilter(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surfaceVariant),
+        show = state.showDialogFilter,
+        selected = state.selectedFilter,
+        onDismiss = {
+            onEvent(HomeEvent.ToggleShowDialogFilter)
+        },
+        onClick = { itemSelected ->
+            onEvent(HomeEvent.ChangeFilter(selected = itemSelected))
         }
     )
 
