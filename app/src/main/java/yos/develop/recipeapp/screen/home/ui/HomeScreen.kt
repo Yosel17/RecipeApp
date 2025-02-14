@@ -2,13 +2,15 @@ package yos.develop.recipeapp.screen.home.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -23,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import yos.develop.recipeapp.core.components.DialogError
 import yos.develop.recipeapp.core.components.EmptyList
+import yos.develop.recipeapp.core.components.ItemRecipe
 import yos.develop.recipeapp.core.components.LoadingScreen
 import yos.develop.recipeapp.core.components.TopBarGlobal
 import yos.develop.recipeapp.core.navigation.Screens
@@ -91,11 +94,26 @@ fun HomeScreen(
                         text = Constants.YOU_HAVE_NOT_ADDED_A_RECIPE_YET
                     )
                 }else{
-                    LazyColumn {
-                        items(state.recipes){
-                            Text(it.title)
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(2),
+                        contentPadding = PaddingValues(16.dp),
+                        content = {
+                            items(
+                                items = state.recipes,
+                                key = {
+                                    it.idRecipe
+                                }
+                            ){ recipe ->
+                                ItemRecipe(
+                                    modifier = Modifier.padding(8.dp),
+                                    recipe = recipe,
+                                    onClick = {
+                                        onNavigation(Screens.RecipeScreen(idRecipe = recipe.idRecipe))
+                                    }
+                                )
+                            }
                         }
-                    }
+                    )
                 }
             }
         }

@@ -20,6 +20,7 @@ object Constants {
     const val ADD_RECIPE_IC = "Icono para agregar receta"
     const val SELECTED_IMAGE_IC = "Icono para seleccionar imagen"
     const val FAVORITE_IC = "Icono favorito"
+    const val NOT_IMAGE_IC = "Icono sin imagen"
 
     //text
     const val RECIPE_APP = "Recetas App"
@@ -54,6 +55,7 @@ object Constants {
     //title
     const val ADD_RECIPE = "Agregar receta"
     const val DETAIL_RECIPE = "Detalle receta"
+    const val TIME = "Tiempo:"
 
     //Route
     const val RECIPE_APP_FOLDER = "RecipeApp"

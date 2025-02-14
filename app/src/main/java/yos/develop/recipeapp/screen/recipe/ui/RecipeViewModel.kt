@@ -2,7 +2,6 @@ package yos.develop.recipeapp.screen.recipe.ui
 
 import android.app.Application
 import android.content.ContentValues
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
@@ -14,9 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -225,7 +222,7 @@ class RecipeViewModel @Inject constructor(
             filePath = image.toString()
 
         }
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, fos)
 
         state = state.copy(routeImage = filePath)
 
