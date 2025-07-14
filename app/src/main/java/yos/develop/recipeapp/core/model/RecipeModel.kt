@@ -1,10 +1,13 @@
 package yos.develop.recipeapp.core.model
 
+import yos.develop.recipeapp.core.utils.Catalog
+
 data class RecipeModel(
     val idRecipe: Int = 0,
     val title: String = "",
     val description: String = "",
     val preparationTime: Int = 0,
     val favorite: Boolean = false,
-    val routeImage: String? = null
+    val routeImage: String? = null,
+    val typeRecipe: Int = Catalog.HOT_RECIPE
 )

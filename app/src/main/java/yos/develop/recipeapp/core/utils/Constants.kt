@@ -37,6 +37,9 @@ object Constants {
     const val TITLE_LABEL = "Título"
     const val DESCRIPTION_LABEL = "Descripción"
     const val PREPARATION_TIME_LABEL = "Tiempo de preparación"
+    const val TYPE_RECIPE_LABEL = "Tipo de receta"
+    const val HOT_RECIPE_TEXT = "Caliente"
+    const val COLD_RECIPE_TEXT = "Fría"
 
     //Error message
     const val THIS_EMAIL_DOES_NOT_CORRESPOND_TO_KOALIT_USER = "Este correo no corresponde al usuario de KOALIT"

@@ -9,5 +9,5 @@ interface RecipeRepository {
 
     suspend fun insertRecipe(recipe: RecipeModel): Resource<Unit>
 
-    suspend fun saveFavoriteRecipe(recipe: RecipeModel): Resource<Unit>
+    suspend fun updateRecipe(recipe: RecipeModel): Resource<Unit>
 }

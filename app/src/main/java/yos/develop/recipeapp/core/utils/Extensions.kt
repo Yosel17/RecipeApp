@@ -20,7 +20,8 @@ fun RecipeEntity.toModel(): RecipeModel{
         description,
         preparationTime,
         favorite,
-        routeImage
+        routeImage,
+        typeRecipe
     )
 }
 
@@ -31,6 +32,7 @@ fun RecipeModel.toEntity(): RecipeEntity{
         description = description,
         preparationTime = preparationTime,
         favorite = favorite,
-        routeImage = routeImage
+        routeImage = routeImage,
+        typeRecipe = typeRecipe
     )
 }

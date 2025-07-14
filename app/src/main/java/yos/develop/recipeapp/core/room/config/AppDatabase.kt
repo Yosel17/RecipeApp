@@ -9,7 +9,7 @@ import yos.develop.recipeapp.core.room.tables.user.UserEntity
 
 @Database(
     entities = [UserEntity::class, RecipeEntity::class],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase: RoomDatabase() {
 

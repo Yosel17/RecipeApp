@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -29,12 +31,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -218,6 +222,63 @@ fun BodyRecipe(
 
             }
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = Constants.TYPE_RECIPE_LABEL,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectableGroup(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                Modifier
+                    .selectable(
+                        selected = state.typeRecipe == Catalog.HOT_RECIPE,
+                        onClick = { onEvent(RecipeEvent.ChangeTypeRecipe(Catalog.HOT_RECIPE)) },
+                        role = Role.RadioButton
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = state.typeRecipe == Catalog.HOT_RECIPE,
+                    onClick = null
+                )
+                Text(
+                    text = Constants.HOT_RECIPE_TEXT,
+                    modifier = Modifier.padding(start = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Row(
+                Modifier
+                    .selectable(
+                        selected = state.typeRecipe == Catalog.COLD_RECIPE,
+                        onClick = { onEvent(RecipeEvent.ChangeTypeRecipe(Catalog.COLD_RECIPE)) },
+                        role = Role.RadioButton
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = state.typeRecipe == Catalog.COLD_RECIPE,
+                    onClick = null
+                )
+                Text(
+                    text = Constants.COLD_RECIPE_TEXT,
+                    modifier = Modifier.padding(start = 4.dp)
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
