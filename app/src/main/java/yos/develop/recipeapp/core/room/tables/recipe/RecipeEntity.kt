@@ -11,5 +11,6 @@ data class RecipeEntity(
     val description: String,
     val preparationTime: Int,
     val favorite: Boolean,
-    val routeImage: String?
+    val routeImage: String?,
+    val typeRecipe: Int
 )

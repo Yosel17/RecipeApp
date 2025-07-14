@@ -58,6 +58,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import yos.develop.recipeapp.R
 import yos.develop.recipeapp.core.model.RecipeModel
 import yos.develop.recipeapp.core.utils.Constants
+import yos.develop.recipeapp.core.utils.Catalog
 
 @Composable
 fun ButtonGlobal(
@@ -275,6 +276,14 @@ fun ItemRecipe(
             Text(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 text = "${Constants.TIME} ${recipe.preparationTime} min.",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.labelSmall
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = if(recipe.typeRecipe == Catalog.HOT_RECIPE) Constants.HOT_RECIPE_TEXT else Constants.COLD_RECIPE_TEXT,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.labelSmall

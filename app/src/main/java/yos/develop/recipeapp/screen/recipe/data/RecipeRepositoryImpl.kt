@@ -30,7 +30,7 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveFavoriteRecipe(recipe: RecipeModel): Resource<Unit> {
+    override suspend fun updateRecipe(recipe: RecipeModel): Resource<Unit> {
         return try {
             recipeDao.updateRecipe(recipeEntity = recipe.toEntity())
             Resource.Success(Unit)

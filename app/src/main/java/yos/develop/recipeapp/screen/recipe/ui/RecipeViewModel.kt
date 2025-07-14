@@ -52,6 +52,9 @@ class RecipeViewModel @Inject constructor(
             is RecipeEvent.ChangeInputs -> {
                 changeInputs(type = event.type, newValue = event.newValue)
             }
+            is RecipeEvent.ChangeTypeRecipe -> {
+                changeTypeRecipe(type = event.type)
+            }
             RecipeEvent.ChangeFavorite -> {
                 changeFavorite()
             }
@@ -69,7 +72,7 @@ class RecipeViewModel @Inject constructor(
             state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
         }else{
             viewModelScope.launch(Dispatchers.IO) {
-                val response = recipeRepository.saveFavoriteRecipe(
+                val response = recipeRepository.updateRecipe(
                     recipe = state.recipe.copy(favorite = !state.recipe.favorite)
                 )
 
@@ -81,6 +84,30 @@ class RecipeViewModel @Inject constructor(
                         }
                         is Resource.Success -> {
                             state = state.copy(recipe = state.recipe.copy(favorite = !state.recipe.favorite))
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun changeTypeRecipe(type: Int){
+        if(state.recipe.idRecipe == Catalog.ID_FOR_ADD_RECIPE){
+            state = state.copy(typeRecipe = type)
+        }else{
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = recipeRepository.updateRecipe(
+                    recipe = state.recipe.copy(typeRecipe = type)
+                )
+
+                withContext(Dispatchers.Main){
+                    when(response){
+                        is Resource.Failure -> {
+                            state = state.copy(errorMessage = response.exception.localizedMessage?:"---")
+                            state = state.copy(isError = true)
+                        }
+                        is Resource.Success -> {
+                            state = state.copy(recipe = state.recipe.copy(typeRecipe = type))
                         }
                     }
                 }
@@ -110,6 +137,7 @@ class RecipeViewModel @Inject constructor(
                                 state = state.copy(imageUri = Uri.parse(response.result.routeImage))
                             }
                             state = state.copy(preparationTime = response.result.preparationTime.toString())
+                            state = state.copy(typeRecipe = response.result.typeRecipe)
                             state = state.copy(isLoadingDataInitial = false)
                         }
                     }
@@ -159,7 +187,8 @@ class RecipeViewModel @Inject constructor(
                         description = state.description,
                         preparationTime = state.preparationTime.toInt(),
                         favorite = state.recipe.favorite,
-                        routeImage = state.routeImage
+                        routeImage = state.routeImage,
+                        typeRecipe = state.typeRecipe
                     )
                 )
 
@@ -263,6 +292,7 @@ class RecipeViewModel @Inject constructor(
         state = state.copy(title = "")
         state = state.copy(description = "")
         state = state.copy(preparationTime = "")
+        state = state.copy(typeRecipe = Catalog.HOT_RECIPE)
         state = state.copy(recipe = RecipeModel())
     }
 }

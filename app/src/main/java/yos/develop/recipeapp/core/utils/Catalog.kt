@@ -8,6 +8,11 @@ object Catalog {
     const val TITLE_TEXT_FIELD = 3
     const val DESCRIPTION_TEXT_FIELD = 4
     const val PREPARATION_TIME_TEXT_FIELD = 5
+    const val TYPE_RECIPE_FIELD = 6
+
+    //Type Recipe
+    const val HOT_RECIPE = 0
+    const val COLD_RECIPE = 1
 
     //recipe
     const val ID_FOR_ADD_RECIPE = 0
